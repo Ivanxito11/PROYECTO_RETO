@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css ' %}">
+
+    <title>LOGIN</title>
+  </head>
+</html>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <form action= "" class= "bourder rounded bg-light p-3 mt-3">
+                    <h2 class="text-center">LOGIN</h2>
+                    <div class="form group">
+                        <label for="usuario">User</label>
+                        <input type="text" class="form-control" name="usuario" id="usuario"
+                        placeholder="Ejem: Iván Álvarez">
+                        <small class="form-text muted">Enter the assigned user</small>
+                    </div>
+                    <div class="form group">
+                        <label for ="usuario">Password</label>
+                        <label for="password"></label>
+                        <input type="password" class="form-control" name="password" id="password">
+                        <small class="form-text muted">Enter the assigned password</small>
+                    </div>
+                    <div class="div form-group">
+                        <button type="button" class="btn btn-success">Login</button>
+                        <button type="button" class="btn btn-success">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
+  </body>
