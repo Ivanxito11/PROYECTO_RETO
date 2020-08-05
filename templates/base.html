@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
   <head>
 
@@ -25,13 +25,12 @@
       <div class="container">
         <a class="navbar-brand" href="{% url 'login' %}">LOGIN</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menú
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'home' %}">Home</a>
+              <a class="nav-link" href="{% url 'registro' %}">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'tareas' %}">Homeworks</a>
@@ -42,9 +41,98 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'examenes' %}">Quiz</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'planificaciones' %}">Planning</a>
-            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Planning</a>
+              <div class="dropdown-menu">
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">January</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">February</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">March</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">April</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">May</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">June</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">July</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">August</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">September</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">October</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">November</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+
+                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">December</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Semana 1</a>
+                        <a class="dropdown-item" href="#">Semana 2</a>
+                        <a class="dropdown-item" href="#">Semana 3</a>
+                        <a class="dropdown-item" href="#">Semana 4</a>
+                    </div>
+
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'cronograma' %}">Timelines</a>
             </li>
@@ -53,8 +141,8 @@
       </div>
     </nav>
 
-    <!-- Cabecera -->
-     <header class="masthead" style="background-image: url('{% block background %} {% endblock %} ')">
+
+    <header class="masthead" style="background-image: url('{% block background %} {% endblock %} ')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -105,6 +193,7 @@
           </div>
         </div>
       </div>
+
     </footer>
 
     <!-- Bootstrap y Javascripts -->

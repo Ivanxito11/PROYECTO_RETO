@@ -26,6 +26,8 @@ urlpatterns = [
     path('examenes/', views.examenes, name="examenes"),
     path('planificaciones/', views.planificaciones, name="planificaciones"),
     path('cronograma/', views.cronograma, name="cronograma"),
+    path('modelo1/', views.modelo1, name="modelo1"),
+    path('registro/', views.registro, name="registro"),
     path('admin/', admin.site.urls)
 ]
 
