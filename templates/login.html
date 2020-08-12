@@ -1,9 +1,8 @@
 
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>REGISTER</title>
+    <title>LOGIN</title>
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -28,7 +27,7 @@
             <div class="modal-content">
                 <div class="col-12 user-img">
                     {% load static %}
-                    <img src="{% static 'img/user.png ' %}" th:src="@{/image/user.png}"/>
+                    <img src="{% static 'img/user.png ' %}" th:src="@{/img/user.png}"/>
                 </div>
                 <form class="col-12" th:action="@{/login}" method="get">
                     <div class="form-group" id="user-group">
@@ -40,7 +39,7 @@
                     <button  class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  LOGIN
 
                     </button>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-user"></i> REGISTER </button>
+                    <button type="submit" class="btn btn-primary"><a href="{% url 'registro' %}"></a><i class="fas fa-user"></i> REGISTER </button>
                 </form>
                 <div class="col-12 forgot">
                     <a href="#">Forgot password?</a>
