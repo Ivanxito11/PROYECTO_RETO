@@ -28,8 +28,6 @@ urlpatterns = [
     path('cronograma/', views.cronograma, name="cronograma"),
     path('modelo1/', views.modelo1, name="modelo1"),
     path('registro/', views.registro, name="registro"),
+    path('creardocente/', views.creardocente, name="creardocente"),
     path('admin/', admin.site.urls)
 ]
-
-
-

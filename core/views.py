@@ -1,5 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404 ,redirect
+from .models import Docente
+from .forms import DocenteForm
+from django.contrib.auth import authenticate, login
 
 html_base = """
     <h1>MENU DE GESTION DE DOCENTES</h1>
@@ -85,5 +88,19 @@ def modelo1(request, plantilla="modelo1.html"):
 
 def registro(request, plantilla="registro.html"):
     return render(request, plantilla);
+
+## CREAR DOCENTE CRUD
+
+def creardocente(request, plantilla="registro.html"):
+    if request.method == "POST":
+        formDocente = DocenteForm(request.POST or None)
+        if formDocente.is_valid():
+            formDocente.save()
+            return redirect("creardocente")
+    else:
+        formDocente = DocenteForm()
+    return render(request, plantilla, {'formDocente': formDocente})
+
+
 
 # Create your views here.
