@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LISTA DE CURSOS</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"/>
+</head>
+<body>
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>DOCENTE</th>
+        <th>AÑO</th>
+        <th>PARALELO</th>
+        <th>JORNADA</th>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for c in curso %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.docente }}</td>
+        <td>{{ c.anio }}</td>
+        <td>{{ c.paralelo }}</td>
+        <td>{{ c.jornada }}</td>
+
+        <td>
+            <td> <a href="{% url 'editarcursos' c.id %}">EDIT</a></td>
+            <td> <a href="{% url 'eliminarcurso' c.id %}">DELETE</a></td>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<a href="{% url 'crearcurso' %}" class="btn btn-primary">Agregar un nuevo curso</a>
+</body>
+</html>

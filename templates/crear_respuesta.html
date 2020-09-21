@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> Ingresar Respuesta </h2>
+    <form method="POST" action="{% url 'crear_respuesta' %}">
+        {% csrf_token %}
+        {{ formRespuesta.as_p  }}
+        <input type="submit" value="Generar respuesta">
+    </form>
+{% endblock %}

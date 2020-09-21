@@ -15,10 +15,14 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
-
+    <link href="{% static 'css/estilos.scss' %}" rel="stylesheet">
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
   </head>
 
   <body>
+
+
+
 
     <!-- Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -27,19 +31,31 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>
         </button>
+
+          {% if request.user.is_authenticated %}
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'registro' %}">Register</a>
+              <a class="navbar-brand" href="{% url 'logout' %}">LOGOUT</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'tareas' %}">Homeworks</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Homeworks</a>
+                <div class="dropdown-menu">
+                    <a class="nav-link "  href="#">Ingreso de Tareas</a>
+                    <a class="nav-link "  href="#">Mostrar Tareas</a>
+                </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link"  href="{% url 'horarios' %}">Schedule</a>
+              <a class="nav-link"  href="#">Schedule</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'examenes' %}">Quiz</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Quiz</a>
+                <div class="dropdown-menu">
+                    <a class="nav-link "  href="#">Generar Preguntas</a>
+                    <a class="nav-link "  href="#">Generar Respuestas</a>
+                    <a class="nav-link "  href="#">BANCO DE PREGUNTAS</a>
+                    </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Planning</a>
@@ -131,18 +147,32 @@
                         <a class="dropdown-item" href="#">Semana 3</a>
                         <a class="dropdown-item" href="#">Semana 4</a>
                     </div>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">ADMIN</a>
+                <div class="dropdown-menu">
+                    <a class="nav-link "  href="{% url 'crear_rol' %}">CREAR ROLES</a>
+                    <a class="nav-link "  href="{% url 'mostrar_roles' %}">MOSTRAR ROLES</a>
+                    <a class="nav-link "  href="{% url 'crear_rol_usuario' %}">INGRESAR USUARIO Y ROL</a>
+                    <a class="nav-link "  href="{% url 'mostrar_roles_usuarios' %}">MOSTRAR USUARIOS Y ROLES</a>
+                    <a class="nav-link "  href="{% url 'crearcurso' %}">INGRESAR CURSO</a>
+                    <a class="nav-link "  href="{% url 'mostrarcursos' %}">MOSTRAR CURSOS</a>
 
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'cronograma' %}">Timelines</a>
+                    </div>
             </li>
+
+
           </ul>
         </div>
+                  {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
       </div>
     </nav>
 
 
     <header class="masthead" style="background-image: url('{% block background %} {% endblock %} ')">
+
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -154,45 +184,27 @@
           </div>
         </div>
       </div>
-    </header>
-        <!-- Contenido -->
-
-
-    <!-- Pié de página -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; 2020 · Iván Álvarez (Tecnológico Superior Guayaquil) </p>
-          </div>
+      <section id="barra-contacto" class="bg-secondary text-white py-3 text-center">
+        <div class="container">
+            <div class="row justify-content-sm-between align-items-sm-center">
+                <div class="col-12 col-sm-auto">
+                     <i class="fas fa-map-marker-alt mr-1"></i><span>Cdla. Las Orquídeas Manzana 1024 Villa 21 Av. Francisco de Orellana</span>
+                </div>
+                <div class="col-12 col-sm-auto">
+                    <ul class="redes-sociales list-unstyled d-inline-flex mb-0">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    </header>
+
+    <footer>
 
     </footer>
 
@@ -201,6 +213,7 @@
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
     <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/509347345b.js" crossorigin="anonymous"></script>
 
   </body>
 

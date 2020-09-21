@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> ELIMINAR ROL Y USUARIO </h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ form.as_p  }}
+        <input type="submit" value="Eliminar Rol y Usuario">
+    </form>
+{% endblock %}

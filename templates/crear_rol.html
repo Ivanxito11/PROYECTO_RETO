@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> Ingresar Rol </h2>
+    <form method="POST" action="{% url 'crear_rol' %}">
+        {% csrf_token %}
+        {{ rol.as_p  }}
+        <input type="submit" value="Crear Curso">
+    </form>
+{% endblock %}

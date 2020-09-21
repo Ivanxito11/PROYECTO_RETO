@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Cuestionario</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"/>
+</head>
+<body>
+    <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <td>ID</td>
+                <td>PREGUNTA</td>
+                <td>RESPUESTA</td>
+                <td>PUNTAJE</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for cuestionario in cuestionario %}
+            <tr>
+                <td>{{ cuestionario.id }}</td>
+                <td>{{ cuestionario.pregunta }}</td>
+                <td>{{ cuestionario.respuesta }}</td>
+                <td>{{ cuestionario.puntaje }}</td>
+                <td>
+                    <a href="/editar/{{ cuestionario.id }}">Edit</a>
+
+                    <a href="/deletecuestionario/{{ cuestionario.id }}">Delete</a>
+                </td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a class="nav-link" href="{% url 'crearcuestionario' %}">Crear Nuevo Cuestionario</a>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> Editar Curso </h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ cursoform.as_p  }}
+        <input type="submit" value="Editar Curso">
+    </form>
+{% endblock %}
