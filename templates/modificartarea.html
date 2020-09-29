@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> Modificar Tarea </h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ tareaform.as_p  }}
+        <input type="submit" value="Modificar Tarea">
+    </form>
+{% endblock %}

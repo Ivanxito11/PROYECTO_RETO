@@ -1,0 +1,9 @@
+{% block header %}
+    <h2> Modificar Planificacion </h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ planificacionform.as_p  }}
+        <input type="submit" value="Modificar Planificacion">
+    </form>
+{% endblock %}
+

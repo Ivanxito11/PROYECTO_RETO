@@ -1,0 +1,8 @@
+{% block header %}
+    <h2> Modificar Horario </h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ horarioform.as_p  }}
+        <input type="submit" value="Modificar Horario">
+    </form>
+{% endblock %}
