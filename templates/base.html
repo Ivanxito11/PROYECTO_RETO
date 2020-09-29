@@ -15,8 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/estilos.scss' %}" rel="stylesheet">
-    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+
   </head>
 
   <body>
@@ -39,114 +38,37 @@
             <li class="nav-item">
               <a class="navbar-brand" href="{% url 'logout' %}">LOGOUT</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Homeworks</a>
-                <div class="dropdown-menu">
-                    <a class="nav-link "  href="#">Ingreso de Tareas</a>
-                    <a class="nav-link "  href="#">Mostrar Tareas</a>
-                </div>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Homeworks</a>
+                  <div class="dropdown-menu">
+                     <a class="nav-link "  href="{% url 'creartarea' %}">Ingreso de Tareas</a>
+                     <a class="nav-link "  href="{% url 'mostrartareas' %}">Mostrar Tareas</a>
+                  </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link"  href="#">Schedule</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Schedule</a>
+                <div class="dropdown-menu">
+                    <a class="nav-link "  href="{% url 'crearhorario' %}">Ingresar Horario</a>
+                    <a class="nav-link "  href="{% url 'mostrarhorario' %}">Mostrar Horario</a>
+                    </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Quiz</a>
                 <div class="dropdown-menu">
-                    <a class="nav-link "  href="#">Generar Preguntas</a>
-                    <a class="nav-link "  href="#">Generar Respuestas</a>
-                    <a class="nav-link "  href="#">BANCO DE PREGUNTAS</a>
+                    <a class="nav-link "  href="{% url 'crearpregunta' %}">Generar Preguntas</a>
+                    <a class="nav-link "  href="{% url 'crear_respuesta' %}">Generar Respuestas</a>
+                    <a class="nav-link "  href="{% url 'mostrar_respuestas' %}">BANCO DE PREGUNTAS</a>
                     </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Planning</a>
               <div class="dropdown-menu">
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">January</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">February</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">March</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">April</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">May</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">June</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">July</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">August</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
+                    <a class="nav-link "  href="{% url 'crearplanificacion' %}">Ingreso de Planificaciones</a>
+                    <a class="nav-link "  href="{% url 'mostrarplanificaciones' %}">Mostrar Planificaciones</a>
                     </div>
 
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">September</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">October</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
 
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">November</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
-
-                  <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">December</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Semana 1</a>
-                        <a class="dropdown-item" href="#">Semana 2</a>
-                        <a class="dropdown-item" href="#">Semana 3</a>
-                        <a class="dropdown-item" href="#">Semana 4</a>
-                    </div>
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">ADMIN</a>
                 <div class="dropdown-menu">
@@ -180,30 +102,16 @@
             <div class="site-heading">
               <h1>Management menu for teachers</h1>
               <span class="subheading">UNIDAD EDUCATIVA PEDRO J. MONTERO</span>
+
+
+                {% block header %} {% endblock %}
             </div>
           </div>
         </div>
       </div>
-      <section id="barra-contacto" class="bg-secondary text-white py-3 text-center">
-        <div class="container">
-            <div class="row justify-content-sm-between align-items-sm-center">
-                <div class="col-12 col-sm-auto">
-                     <i class="fas fa-map-marker-alt mr-1"></i><span>Cdla. Las Orquídeas Manzana 1024 Villa 21 Av. Francisco de Orellana</span>
-                </div>
-                <div class="col-12 col-sm-auto">
-                    <ul class="redes-sociales list-unstyled d-inline-flex mb-0">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
     </header>
-
+    {% block content %}   {% endblock %}
     <footer>
 
     </footer>

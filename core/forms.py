@@ -7,18 +7,6 @@ from django.core.exceptions import ValidationError
 
 
 
-class Ingresopreguntaform(forms.ModelForm):
-    class Meta:
-        model = Pregunta
-        fields=['descripcion','puntaje']
-
-class IngresoRespuestaform(forms.ModelForm):
-    class Meta:
-        model= Respuestas
-        fields=['id_pregunta','descripcion','estado_resp']
-
-
-
 class RolForm(forms.ModelForm):
     class Meta:
         model= Rol
@@ -104,3 +92,29 @@ class CursoForm(forms.ModelForm):
     class Meta:
         model= Curso
         fields=['docente','anio','paralelo','jornada']
+
+class Tareaform(forms.ModelForm):
+    class Meta:
+        model= Tarea
+        fields= ['docente','curso','descripcion','puntaje','estado']
+
+class Planificacionform(forms.ModelForm):
+    class Meta:
+        model= Planificacion
+        fields= ['docente','curso','descripcion','fecha']
+
+class Horarioform(forms.ModelForm):
+    class Meta:
+        model= Horario
+        fields= ['docente','curso','hora','dia']
+
+
+class Ingresopreguntaform(forms.ModelForm):
+    class Meta:
+        model = Pregunta
+        fields=['descripcion','puntaje']
+
+class IngresoRespuestaform(forms.ModelForm):
+    class Meta:
+        model= Respuestas
+        fields=['docente','curso','id_pregunta','descripcion','estado_resp']

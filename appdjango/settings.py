@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'appdjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql_cymysql',
         'NAME': 'sistemadb',
         'USER': 'root',
         'PASSWORD': '',

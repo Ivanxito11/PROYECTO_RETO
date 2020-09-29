@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+
 {% block content %}
  <div class="container">
         <div class="col-md-8" style="margin-top: 70px;">
@@ -23,7 +27,7 @@
                         <tr>
                          <td>{{ u.id }}</td>
                             <td>{{ u.username }}</td>
-                            <td>{{ u.rolusuario.rol.nombre }}</td>
+                            <td>{{ u.usuario_roles.rol.nombre }}</td>
 
 
                         <td>  <a class="nav-link" href="{% url 'modificar_usuario' u.id  %}">Modificar</a> </td>

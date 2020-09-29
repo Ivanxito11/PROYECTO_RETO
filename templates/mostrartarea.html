@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Docentes</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"/>
-</head>
-<body>
-    <table class="table table-striped table-bordered table-sm">
+{% extends "base.html" %}
+
+{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+
+
+{% block content %}
+ <div class="container">
+        <div class="col-md-8" style="margin-top: 70px;">
+
+            <h2> LISTA DE HORARIOS </h2>
+
+            <div class="table-responsive">
+                <table class="table">
         <thead class="thead-dark">
             <tr>
                 <td>ID</td>
@@ -22,23 +25,34 @@
             </tr>
         </thead>
         <tbody>
-            {% for tarea in tarea %}
+            {% for t in tarea %}
             <tr>
-                <td>{{ tarea.id }}</td>
-                <td>{{ tarea.docente }}</td>
-                <td>{{ tarea.curso }}</td>
-                <td>{{ tarea.descripcion }}</td>
-                <td>{{ tarea.fecha }}</td>
-                <td>{{ tarea.puntaje }}</td>
-                <td>{{ tarea.asignado }}</td>
+                <td>{{ t.id }}</td>
+                <td>{{ t.docente }}</td>
+                <td>{{ t.curso }}</td>
+                <td>{{ t.descripcion }}</td>
+                <td>{{ t.fecha }}</td>
+                <td>{{ t.puntaje }}</td>
+                <td>{{ t.estado }}</td>
+
+                <td>
+                <td> <a href="{% url 'modificartarea' t.id %}">EDITAR</a></td>
+                <td> <a href="{% url 'eliminartarea' t.id %}">DELETE</a></td>
+                </td>
 
             {% endfor %}
                 </tr>
         </tbody>
     </table>
-
+    </div>
 
     <a class="nav-link" href="{% url 'creartarea' %}">Crear Nueva Tarea</a>
 
+        </div>
+    </div>
+
+
+
+{% endblock %}
 </body>
 </html>

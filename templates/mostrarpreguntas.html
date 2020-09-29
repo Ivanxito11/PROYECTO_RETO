@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LISTA DE CURSOS</title>
-     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"/>
-</head>
-<body>
-<table class="table table-striped table-bordered table-sm">
+{% extends "base.html" %}
+
+{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+
+
+{% block content %}
+ <div class="container">
+        <div class="col-md-8" style="margin-top: 70px;">
+
+            <h2> LISTA DE PREGUNTAS </h2>
+
+            <div class="table-responsive">
+                <table class="table">
     <thead class="thead-dark">
     <tr>
         <th>ID</th>
-        <th>PREGUNTA</th>
-        <th>RESPUESTA</th>
-        <th>VALOR TRUE OR FALSE</th>
+        <th>DESCRIPCION</th>
+        <th>PUNTAJE</th>
+
     </tr>
     </thead>
     <tbody>
-{% for banco in banco %}
+{% for c in pregunta %}
     <tr>
-        <td>{{ banco.id }}</td>
-        <td>{{ banco.id_pregunta }}</td>
-        <td>{{ banco.descripcion }}</td>
-        <td>{{ banco.estado_resp}}</td>
+        <td>{{ c.id }}</td>
+        <td>{{ c.descripcion }}</td>
+        <td>{{ c.puntaje }}</td>
+
 
         <td>
-            <a href="/edit/{{ banco.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
-            <a href="/delete/{{ banco.id }}">Delete</a>
+            <td> <a href="{% url 'modificarpregunta' c.id %}">EDIT</a></td>
+            <td> <a href="{% url 'eliminarpregunta' c.id %}">DELETE</a></td>
         </td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
-<br>
-<br>
+     </div>
+<a href="{% url 'crearpregunta' %}" class="btn btn-primary">Agregar una nueva pregunta</a>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
 </body>
 </html>

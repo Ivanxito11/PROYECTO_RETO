@@ -44,32 +44,6 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class Pregunta(models.Model):
-    descripcion= models.CharField(max_length=200)
-    puntaje= models.IntegerField(default=10)
-    class Meta:
-        db_table ="Pregunta"
-        verbose_name ="pregunta"
-        verbose_name_plural ="preguntas"
-    def __str__(self):
-        return self.descripcion
-
-
-
-class Respuestas(models.Model):
-    id_pregunta=models.ForeignKey(Pregunta, on_delete=models.CASCADE)
-    descripcion= models.CharField(max_length=100)
-    estado_resp= models.BooleanField(default= 1)
-    class Meta:
-        db_table ="Respuesta"
-        verbose_name ="Respuesta"
-        verbose_name_plural ="Respuestas"
-    def __str__(self):
-        return self.descripcion
-
-
-
-
 class Rol(models.Model):
     nombre = models.CharField(max_length=200)
     estado = models.IntegerField(default=1)
@@ -154,9 +128,66 @@ class Curso(models.Model):
     def __str__(self):
         return '{} {} {}'.format(self.anio,self.paralelo,self.jornada)
 
+class Tarea(models.Model):
+    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
+    descripcion=models.TextField(max_length=500)
+    fecha= models.DateField(auto_now=True)
+    puntaje= models.IntegerField(default=10)
+    estado=models.BooleanField(default=True)
+    class Meta:
+        db_table="Tarea"
+        verbose_name="Tareas"
+        verbose_name_plural="Tareas"
+
+class Planificacion(models.Model):
+    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
+    descripcion = models.TextField(max_length=500)
+    fecha = models.DateField(auto_now_add=False)
+    class Meta:
+        db_table="Planificacion"
+        verbose_name="Planificacion"
+        verbose_name_plural="Planificaciones"
+
+class Horario(models.Model):
+    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
+    hora= models.IntegerField(default=1)
+    dia= models.CharField(max_length=10)
+    class Meta:
+        db_table="Horario"
+        verbose_name="Horario"
+        verbose_name_plural="Horarios"
 
 
+class Pregunta(models.Model):
+    descripcion = models.CharField(max_length=200)
+    puntaje = models.IntegerField(default=10)
 
+    class Meta:
+        db_table = "Pregunta"
+        verbose_name = "pregunta"
+        verbose_name_plural = "preguntas"
+
+    def __str__(self):
+        return self.descripcion
+
+
+class Respuestas(models.Model):
+    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
+    id_pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=100)
+    estado_resp = models.BooleanField(default=1)
+
+    class Meta:
+        db_table = "Respuesta"
+        verbose_name = "Respuesta"
+        verbose_name_plural = "Respuestas"
+
+    def __str__(self):
+        return self.descripcion
 
 
 

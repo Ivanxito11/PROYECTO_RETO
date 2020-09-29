@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LISTA DE ROLES</title>
-     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"/>
-</head>
-<body>
-<table class="table table-striped table-bordered table-sm">
+{% extends "base.html" %}
+
+{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+
+
+{% block content %}
+ <div class="container">
+        <div class="col-md-8" style="margin-top: 70px;">
+
+            <h2> LISTA DE ROLES </h2>
+
+            <div class="table-responsive">
+                <table class="table">
     <thead class="thead-dark">
     <tr>
         <th>ID</th>
@@ -31,6 +34,11 @@
 </table>
 <br>
 <br>
+            </div>
 <a href="{% url 'crear_rol' %}" class="btn btn-primary">Agregar un nuevo rol</a>
+                    </div>
+    </div>
+
+{% endblock %}
 </body>
 </html>

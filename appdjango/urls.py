@@ -47,6 +47,38 @@ urlpatterns = [
     path('modificarcurso/<int:pk>', views.modificarcurso, name="editarcursos"),
     path('eliminarcurso/<int:pk>', views.eliminarcurso, name="eliminarcurso"),
 
+
+    #TAREAS
+    path('creartarea/', views.creartarea, name="creartarea"),
+    path('mostrartareas/', views.mostrartareas, name="mostrartareas"),
+    path('modificartarea/<int:pk>', views.modificartarea, name="modificartarea"),
+    path('eliminartarea/<int:pk>', views.eliminartarea, name="eliminartarea"),
+
+    #PLANIFICACIONES
+    path('crearplanificacion/', views.crearplanificacion, name="crearplanificacion"),
+    path('mostrarplanificaciones/', views.mostrarplanificacion, name="mostrarplanificaciones"),
+    path('modificarplanificacion/<int:pk>', views.modificarplanificacion, name="modificarplanificacion"),
+    path('eliminarplanificacion/<int:pk>', views.eliminarplanificacion, name="eliminarplanificacion"),
+
+    #HORARIOS
+    path('crearhorario/', views.crearhorario, name="crearhorario"),
+    path('mostrarhorario/', views.mostrarhorario, name="mostrarhorario"),
+    path('modificarhorario/<int:pk>', views.modificarhorario, name="modificarhorario"),
+    path('eliminarhorario/<int:pk>', views.eliminarhorario, name="eliminarhorario"),
+
+    #PREGUNTA
+    path('crearpregunta/', views.crearpregunta, name="crearpregunta"),
+    path('mostrarpregunta/', views.mostrarpregunta, name="mostrarpregunta"),
+    path('modificarpregunta/<int:pk>', views.modificarpregunta, name="modificarpregunta"),
+    path('eliminarpregunta/<int:pk>', views.eliminarpregunta, name="eliminarpregunta"),
+
+    #RESPUESTAS
+    path('crear_respuesta/', views.crear_respuesta, name="crear_respuesta"),
+    path('mostrar_respuestas/', views.mostrar_respuesta, name="mostrar_respuestas"),
+    path('modificar_respuesta/<int:pk>', views.modificar_respuesta, name="modificar_respuesta"),
+    path('eliminar_respuesta/<int:pk>', views.eliminar_respuesta, name="eliminar_respuesta"),
+
+
     path('tareas/', views.tareas, name="tareas"),
     path('horarios/', views.horarios, name="horarios"),
     path('examenes/', views.examenes, name="examenes"),
