@@ -98,10 +98,15 @@ class Tareaform(forms.ModelForm):
         model= Tarea
         fields= ['docente','curso','descripcion','puntaje','estado']
 
+class Actividadform(forms.ModelForm):
+    class Meta:
+        model= Actividad
+        fields=['actividad']
+
 class Planificacionform(forms.ModelForm):
     class Meta:
         model= Planificacion
-        fields= ['docente','curso','descripcion','fecha']
+        fields= ['actividad','curso','descripcion','fecha']
 
 class Horarioform(forms.ModelForm):
     class Meta:
@@ -118,3 +123,4 @@ class IngresoRespuestaform(forms.ModelForm):
     class Meta:
         model= Respuestas
         fields=['docente','curso','id_pregunta','descripcion','estado_resp']
+

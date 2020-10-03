@@ -14,7 +14,7 @@
     <thead class="thead-dark">
     <tr>
         <th>ID</th>
-        <th>DOCENTE</th>
+        <th>TIPO DE ACTIVIDAD</th>
         <th>CURSO</th>
         <th>DESCRIPCION</th>
         <th>FECHA</th>
@@ -22,10 +22,11 @@
     </tr>
     </thead>
     <tbody>
+    {% if request.user.is_authenticated %}
 {% for c in planificacion %}
     <tr>
         <td>{{ c.id }}</td>
-        <td>{{ c.docente }}</td>
+        <td>{{ c.actividad }}</td>
         <td>{{ c.curso }}</td>
         <td>{{ c.descripcion }}</td>
         <td>{{ c.fecha }}</td>
@@ -36,6 +37,7 @@
         </td>
     </tr>
 {% endfor %}
+    {% endif %}
     </tbody>
 </table>
      </div>

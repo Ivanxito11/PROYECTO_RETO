@@ -140,8 +140,18 @@ class Tarea(models.Model):
         verbose_name="Tareas"
         verbose_name_plural="Tareas"
 
+class Actividad(models.Model):
+    actividad = models.CharField(max_length=255)
+    class Meta:
+        db_table = "Actividad"
+        verbose_name = "Actividad"
+        verbose_name_plural = "Actividad"
+    def __str__(self):
+        return self.actividad
+
+
 class Planificacion(models.Model):
-    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    actividad= models.ForeignKey(Actividad, on_delete=models.CASCADE)
     curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=500)
     fecha = models.DateField(auto_now_add=False)
@@ -153,7 +163,7 @@ class Planificacion(models.Model):
 class Horario(models.Model):
     docente= models.ForeignKey(User, on_delete=models.CASCADE)
     curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
-    hora= models.IntegerField(default=1)
+    hora= models.TimeField(auto_now=False, auto_now_add=False)
     dia= models.CharField(max_length=10)
     class Meta:
         db_table="Horario"
@@ -188,7 +198,6 @@ class Respuestas(models.Model):
 
     def __str__(self):
         return self.descripcion
-
 
 
 

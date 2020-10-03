@@ -19,6 +19,7 @@
                         <th>HORA</th>
                         <th>DIA</th>
 
+
                         <th>EDIT</th>
                         <th>DELETE</th>
 
@@ -27,6 +28,7 @@
                     <tbody>
 
                     {% for r in horario %}
+
                         <tr>
                             <td>{{ r.id }}</td>
                             <td>{{ r.docente }}</td>
@@ -34,13 +36,15 @@
                             <td>{{ r.hora }}</td>
                             <td>{{ r.dia }}</td>
 
-
+                            {% for rolusuario in user.rolusuario_set.all %}
+                         {% if rolusuario.rol.nombre == "ADMINISTRADOR" %}
                         <td>  <a class="nav-link" href="{% url 'modificarhorario' r.id  %}">EDIT</a> </td>
-
                         <td>  <a class="nav-link" href="{% url 'eliminarhorario' r.id  %}">DELETE</a> </td>
-
+                          {% endif %}
+                    {% endfor %}
                         </tr>
                     {% endfor %}
+
                     </tbody>
                 </table>
             </div>
