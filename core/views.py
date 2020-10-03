@@ -5,8 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
 
-from .forms import UserCreationForm, RolForm, RolUsuarioForm,CursoForm, Tareaform, Planificacionform, Horarioform, Ingresopreguntaform, IngresoRespuestaform
-from .models import User, Rol, RolUsuario,Curso,Tarea,Planificacion, Horario, Pregunta, Respuestas
+from .forms import UserCreationForm, RolForm, RolUsuarioForm,CursoForm, Tareaform, Planificacionform, Horarioform, Ingresopreguntaform, IngresoRespuestaform,Actividadform
+from .models import User, Rol, RolUsuario,Curso,Tarea,Planificacion, Horario, Pregunta, Respuestas,Actividad
 
 
 
@@ -470,5 +470,47 @@ def eliminar_respuesta(request, pk, plantilla="eliminar_respuesta.html"):
         respuestaform = IngresoRespuestaform(request.POST or None, instance=respuesta)
     return render(request, plantilla, {'respuestaform': respuestaform })
 
+#--------------------------------------------------------------------------------------------
+#CRUD DE ACTIVIDAD
+def crearactividad(request, plantilla="crearactividad.html"):
+    if request.method == "POST":
+        actividad =Actividadform(request.POST or None)
+        if actividad.is_valid():
+            actividad.save()
+        return redirect("mostraractividades")
+    else:
+        actividad = Actividadform()
+    return render(request, plantilla, {'actividad': actividad})
+
+
+def mostraractividad(request):
+    actividad = Actividad.objects.all()
+    return render(request, "mostraractividades.html", {'actividad': actividad})
+
+
+def modificaractividad(request, pk, plantilla="modificaractividad.html"):
+    if request.method == "POST":
+        actividad = get_object_or_404(Actividad, id=pk)
+        actividadform = Actividadform(request.POST or None, instance=actividad)
+        if actividadform.is_valid():
+            actividadform.save()
+        return redirect("mostraractividades")
+    else:
+        actividad = get_object_or_404(Actividad, id=pk)
+        actividadform= Actividadform(request.POST or None, instance=actividad)
+    return render(request, plantilla, {'actividadform': actividadform})
+
+
+def eliminaractividad(request, pk, plantilla="eliminaractividad.html"):
+    if request.method == "POST":
+        actividad = get_object_or_404(Actividad, pk=pk)
+        actividadform = Actividadform(request.POST or None, instance=actividad)
+        if actividadform.is_valid():
+            actividad.delete()
+        return redirect('mostraractividades')
+    else:
+        actividad = get_object_or_404(Actividad, pk=pk)
+        actividadform = Actividadform(request.POST or None, instance=actividad)
+    return render(request, plantilla, {'actividadform': actividadform })
 
 # Create your views here.

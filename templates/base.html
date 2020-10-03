@@ -10,7 +10,7 @@
 
     <!-- Estilos y fuentes del template  -->
        {% load static %}
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -27,6 +27,8 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="{% url 'login' %}">LOGIN</a>
+        <a class="navbar-brand" href="#"> Bienvenido {% if user %} {{ request.user.username }}
+            {{ user.rolusuario.rol }} {% endif %}    </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>
         </button>
@@ -37,7 +39,11 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="navbar-brand" href="{% url 'logout' %}">LOGOUT</a>
+
             </li>
+
+              {% for rolusuario in user.rolusuario_set.all %}
+                {% if rolusuario.rol.nombre == "DOCENTE" %}
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Homeworks</a>
@@ -49,7 +55,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Schedule</a>
                 <div class="dropdown-menu">
-                    <a class="nav-link "  href="{% url 'crearhorario' %}">Ingresar Horario</a>
+
                     <a class="nav-link "  href="{% url 'mostrarhorario' %}">Mostrar Horario</a>
                     </div>
             </li>
@@ -67,7 +73,9 @@
                     <a class="nav-link "  href="{% url 'crearplanificacion' %}">Ingreso de Planificaciones</a>
                     <a class="nav-link "  href="{% url 'mostrarplanificaciones' %}">Mostrar Planificaciones</a>
                     </div>
+                  {% endif %}
 
+            {% if rolusuario.rol.nombre == "ADMINISTRADOR" %}
 
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">ADMIN</a>
@@ -78,10 +86,19 @@
                     <a class="nav-link "  href="{% url 'mostrar_roles_usuarios' %}">MOSTRAR USUARIOS Y ROLES</a>
                     <a class="nav-link "  href="{% url 'crearcurso' %}">INGRESAR CURSO</a>
                     <a class="nav-link "  href="{% url 'mostrarcursos' %}">MOSTRAR CURSOS</a>
+                    <a class="nav-link "  href="{% url 'crearactividad' %}">INGRESAR TIPO DE ACTIVIDAD</a>
+                    <a class="nav-link "  href="{% url 'mostrarcursos' %}">MOSTRAR TIPO DE ACTIVIDADES</a>
+
+
+
+                    <a class="nav-link "  href="{% url 'crearhorario' %}">Ingresar Horario</a>
+                     <a class="nav-link "  href="{% url 'mostrarhorario' %}">Mostrar Horario</a>
 
 
                     </div>
             </li>
+            {% endif %}
+            {% endfor %}
 
 
           </ul>
@@ -118,12 +135,11 @@
 
     <!-- Bootstrap y Javascripts -->
    {% load static %}
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %} "></script>
     <script src="{% static 'js/clean-blog.min.js' %}"></script>
     <script src="https://kit.fontawesome.com/509347345b.js" crossorigin="anonymous"></script>
 
   </body>
 
 </html>
-

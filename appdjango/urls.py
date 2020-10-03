@@ -78,6 +78,12 @@ urlpatterns = [
     path('modificar_respuesta/<int:pk>', views.modificar_respuesta, name="modificar_respuesta"),
     path('eliminar_respuesta/<int:pk>', views.eliminar_respuesta, name="eliminar_respuesta"),
 
+    #ACTIVIDAD
+    path('crearactividad/', views.crearactividad, name="crearactividad"),
+    path('mostraractividades/', views.mostraractividad, name="mostraractividades"),
+    path('modificaractividad/<int:pk>', views.modificaractividad, name="modificaractividad"),
+    path('eliminaractividad/<int:pk>', views.eliminaractividad, name="eliminaractividad"),
+
 
     path('tareas/', views.tareas, name="tareas"),
     path('horarios/', views.horarios, name="horarios"),
