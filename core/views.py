@@ -1,9 +1,20 @@
-from django.shortcuts import render, redirect, get_object_or_404
+import io
+from django.http import FileResponse
+from reportlab.lib import colors
+from reportlab.lib.enums import TA_CENTER, TA_RIGHT
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.pdfgen import canvas
+
+
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
 
 from .forms import UserCreationForm, RolForm, RolUsuarioForm,CursoForm, Tareaform, Planificacionform, Horarioform, Ingresopreguntaform, IngresoRespuestaform,Actividadform
 from .models import User, Rol, RolUsuario,Curso,Tarea,Planificacion, Horario, Pregunta, Respuestas,Actividad
@@ -251,21 +262,22 @@ def eliminarcurso(request, pk, plantilla="eliminarcurso.html"):
 
 #---------------------------------------------------------------------------------------------------------
 # CRUDS DE TAREAS
+
 def creartarea(request, plantilla="creartarea.html"):
     if request.method == "POST":
-        tarea = Tareaform(request.POST or None)
-        if tarea.is_valid():
+        tareaform = Tareaform(request.POST or None)
+        if tareaform.is_valid():
+            tarea = tareaform.save(commit=False)
+            tarea.docente = request.user
             tarea.save()
         return redirect("mostrartareas")
     else:
         tarea = Tareaform()
     return render(request, plantilla, {'tarea': tarea})
 
-
 def mostrartareas(request):
-    tarea = Tarea.objects.all()
+    tarea= Tarea.objects.filter(docente_id= request.user.id)
     return render(request, "mostrartarea.html", {'tarea': tarea})
-
 
 def modificartarea(request, pk, plantilla="modificartarea.html"):
     if request.method == "POST":
@@ -297,8 +309,10 @@ def eliminartarea(request, pk, plantilla="eliminartarea.html"):
 
 def crearplanificacion(request, plantilla="crearplanificacion.html"):
     if request.method == "POST":
-        planificacion = Planificacionform(request.POST or None)
-        if planificacion.is_valid():
+        planificacionform = Planificacionform(request.POST or None)
+        if planificacionform.is_valid():
+            planificacion = planificacionform.save(commit=False)
+            planificacion.docente = request.user
             planificacion.save()
         return redirect("mostrarplanificaciones")
     else:
@@ -307,7 +321,7 @@ def crearplanificacion(request, plantilla="crearplanificacion.html"):
 
 
 def mostrarplanificacion(request):
-    planificacion = Planificacion.objects.all()
+    planificacion= Planificacion.objects.filter(docente_id= request.user.id)
     return render(request, "mostrarplanificacion.html", {'planificacion': planificacion})
 
 
@@ -386,17 +400,18 @@ def eliminarhorario(request, pk, plantilla="eliminarhorario.html"):
 
 def crearpregunta(request, plantilla="crearpregunta.html"):
     if request.method == "POST":
-        pregunta =Ingresopreguntaform (request.POST or None)
-        if pregunta.is_valid():
+        preguntaform = Ingresopreguntaform(request.POST or None)
+        if preguntaform.is_valid():
+            pregunta = preguntaform.save(commit=False)
+            pregunta.docente = request.user
             pregunta.save()
         return redirect("mostrarpregunta")
     else:
         pregunta = Ingresopreguntaform()
     return render(request, plantilla, {'pregunta': pregunta})
 
-
 def mostrarpregunta(request):
-    pregunta = Pregunta.objects.all()
+    pregunta= Pregunta.objects.filter(docente_id= request.user.id)
     return render(request, "mostrarpreguntas.html", {'pregunta': pregunta})
 
 
@@ -431,17 +446,18 @@ def eliminarpregunta(request, pk, plantilla="eliminarpregunta.html"):
 
 def crear_respuesta(request, plantilla="crear_respuesta.html"):
     if request.method == "POST":
-        respuesta =IngresoRespuestaform (request.POST or None)
-        if respuesta.is_valid():
+        respuestaform = IngresoRespuestaform(request.POST or None)
+        if respuestaform.is_valid():
+            respuesta = respuestaform.save(commit=False)
+            respuesta.docente = request.user
             respuesta.save()
         return redirect("mostrar_respuestas")
     else:
         respuesta = IngresoRespuestaform()
     return render(request, plantilla, {'respuesta': respuesta})
 
-
 def mostrar_respuesta(request):
-    respuesta = Respuestas.objects.all()
+    respuesta= Respuestas.objects.filter(docente_id= request.user.id)
     return render(request, "mostrar_respuestas.html", {'respuesta': respuesta})
 
 
@@ -512,5 +528,48 @@ def eliminaractividad(request, pk, plantilla="eliminaractividad.html"):
         actividad = get_object_or_404(Actividad, pk=pk)
         actividadform = Actividadform(request.POST or None, instance=actividad)
     return render(request, plantilla, {'actividadform': actividadform })
+
+
+#---------------------------------------------------------------------------------------
+#REPORTERIA DE LISTADOS
+
+def exportarListTareas(request, plantilla="mostrartarea.html"):
+    # Create a file-like buffer to receive PDF data.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="lista_tareas.pdf"'
+
+    buffer = io.BytesIO()
+
+    doc = SimpleDocTemplate(buffer,
+                            rightMargin=inch / 4,
+                            leftMargin=inch / 4,
+                            topMargin=inch / 2,
+                            bottomMargin=inch / 4,
+                            pagesize=A4)
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
+    styles.add(ParagraphStyle(name='RightAlign', fontName='Arial', align=TA_RIGHT))
+
+    tareas = []
+    styles = getSampleStyleSheet()
+    header = Paragraph("     Listado de Tareas", styles['Heading1'])
+    tareas.append(header)
+    headings = ('Id', 'Curso', 'Descripcion', 'Fecha', 'Puntaje', 'Asignado')
+    tareas = [(d.id, d.curso, d.descripcion , d.fecha,d.puntaje,d.estado) for d in Tarea.objects.all()]
+    print(tareas)
+
+    t = Table([headings] + tareas)
+    t.setStyle(TableStyle(
+        [
+            ('GRID', (0, 0), (9, -1), 1, colors.springgreen),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, colors.springgreen),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.springgreen)
+        ]
+    ))
+    tareas.append(t)
+    doc.build(tareas)
+    response.write(buffer.getvalue())
+    buffer.close()
+    return response
 
 # Create your views here.

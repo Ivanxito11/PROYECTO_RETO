@@ -20,8 +20,6 @@
                         <th>DIA</th>
 
 
-                        <th>EDIT</th>
-                        <th>DELETE</th>
 
                     </tr>
                     </thead>
@@ -48,9 +46,11 @@
                     </tbody>
                 </table>
             </div>
-
+                            {% for rolusuario in user.rolusuario_set.all %}
+                         {% if rolusuario.rol.nombre == "ADMINISTRADOR" %}
             <a class="nav-link" href="{% url 'crearhorario' %}">Crear Horario</a>
-
+                          {% endif %}
+                    {% endfor %}
 
         </div>
     </div>

@@ -96,7 +96,7 @@ class CursoForm(forms.ModelForm):
 class Tareaform(forms.ModelForm):
     class Meta:
         model= Tarea
-        fields= ['docente','curso','descripcion','puntaje','estado']
+        fields= ['curso','descripcion','puntaje','estado']
 
 class Actividadform(forms.ModelForm):
     class Meta:
@@ -107,6 +107,8 @@ class Planificacionform(forms.ModelForm):
     class Meta:
         model= Planificacion
         fields= ['actividad','curso','descripcion','fecha']
+        widgets = {'fecha': forms.DateInput(format=('%m/%d/%Y'),attrs={'type':'date' })}
+
 
 class Horarioform(forms.ModelForm):
     class Meta:
@@ -122,5 +124,5 @@ class Ingresopreguntaform(forms.ModelForm):
 class IngresoRespuestaform(forms.ModelForm):
     class Meta:
         model= Respuestas
-        fields=['docente','curso','id_pregunta','descripcion','estado_resp']
+        fields=['curso','id_pregunta','descripcion','estado_resp']
 

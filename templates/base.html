@@ -73,9 +73,11 @@
                     <a class="nav-link "  href="{% url 'crearplanificacion' %}">Ingreso de Planificaciones</a>
                     <a class="nav-link "  href="{% url 'mostrarplanificaciones' %}">Mostrar Planificaciones</a>
                     </div>
-                  {% endif %}
+
+                {% endif %}
 
             {% if rolusuario.rol.nombre == "ADMINISTRADOR" %}
+
 
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">ADMIN</a>
@@ -87,7 +89,7 @@
                     <a class="nav-link "  href="{% url 'crearcurso' %}">INGRESAR CURSO</a>
                     <a class="nav-link "  href="{% url 'mostrarcursos' %}">MOSTRAR CURSOS</a>
                     <a class="nav-link "  href="{% url 'crearactividad' %}">INGRESAR TIPO DE ACTIVIDAD</a>
-                    <a class="nav-link "  href="{% url 'mostrarcursos' %}">MOSTRAR TIPO DE ACTIVIDADES</a>
+                    <a class="nav-link "  href="{% url 'mostraractividades' %}">MOSTRAR TIPO DE ACTIVIDADES</a>
 
 
 
@@ -97,8 +99,9 @@
 
                     </div>
             </li>
-            {% endif %}
+                        {% endif %}
             {% endfor %}
+
 
 
           </ul>

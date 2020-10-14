@@ -129,7 +129,7 @@ class Curso(models.Model):
         return '{} {} {}'.format(self.anio,self.paralelo,self.jornada)
 
 class Tarea(models.Model):
-    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    docente = models.ForeignKey(User, on_delete=models.CASCADE)
     curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
     descripcion=models.TextField(max_length=500)
     fecha= models.DateField(auto_now=True)
@@ -151,6 +151,7 @@ class Actividad(models.Model):
 
 
 class Planificacion(models.Model):
+    docente = models.ForeignKey(User, on_delete=models.CASCADE)
     actividad= models.ForeignKey(Actividad, on_delete=models.CASCADE)
     curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=500)
@@ -172,6 +173,7 @@ class Horario(models.Model):
 
 
 class Pregunta(models.Model):
+    docente = models.ForeignKey(User, on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=200)
     puntaje = models.IntegerField(default=10)
 
@@ -185,7 +187,7 @@ class Pregunta(models.Model):
 
 
 class Respuestas(models.Model):
-    docente= models.ForeignKey(User, on_delete=models.CASCADE)
+    docente = models.ForeignKey(User, on_delete=models.CASCADE)
     curso=models.ForeignKey(Curso, on_delete=models.CASCADE)
     id_pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=100)
@@ -198,7 +200,6 @@ class Respuestas(models.Model):
 
     def __str__(self):
         return self.descripcion
-
 
 
 

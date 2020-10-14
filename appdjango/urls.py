@@ -84,6 +84,8 @@ urlpatterns = [
     path('modificaractividad/<int:pk>', views.modificaractividad, name="modificaractividad"),
     path('eliminaractividad/<int:pk>', views.eliminaractividad, name="eliminaractividad"),
 
+    #REPORTERIA
+    path('exportarListTareas/', views.exportarListTareas, name="exportarListTareas"),
 
     path('tareas/', views.tareas, name="tareas"),
     path('horarios/', views.horarios, name="horarios"),
