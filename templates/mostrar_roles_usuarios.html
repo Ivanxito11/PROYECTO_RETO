@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+{% block background %}{% load static %}{% static 'img/about-bg.jpg' %}{% endblock %}
 
 
 {% block content %}
@@ -15,6 +15,8 @@
         <th>ID</th>
         <th>ROL</th>
         <th>USUARIO</th>
+        <th>EDITAR</th>
+        <th>ELIMINAR</th>
 
     </tr>
     </thead>
@@ -27,10 +29,10 @@
         <td>{{ ru.rol }}</td>
         <td>{{ ru.usuario }}</td>
 
-        <td>
-            <td> <a href="{% url 'modificar_roles_usuarios' ru.id %}">editar</a></td>
-            <td> <a href="{% url 'eliminar_rol_usuario' ru.id %}">Delete</a></td>
-        </td>
+
+            <td> <a href="{% url 'modificar_roles_usuarios' ru.id %}">Editar</a></td>
+            <td> <a href="{% url 'eliminar_rol_usuario' ru.id %}">Eliminar</a></td>
+
     </tr>
 
     {% endfor %}

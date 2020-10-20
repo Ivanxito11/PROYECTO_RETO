@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+{% block background %}{% load static %}{% static 'img/about-bg.jpg' %}{% endblock %}
 
 
 {% block content %}
@@ -14,7 +14,8 @@
     <tr>
         <th>ID</th>
         <th>TIPO DE ACTIVIDAD</th>
-
+        <th>EDITAR</th>
+        <th>ELIMINAR</th>
     </tr>
     </thead>
     <tbody>
@@ -26,10 +27,10 @@
         <td>{{ ru.actividad }}</td>
 
 
-        <td>
-            <td> <a href="{% url 'modificaractividad' ru.id %}">editar</a></td>
-            <td> <a href="{% url 'eliminaractividad' ru.id %}">Delete</a></td>
-        </td>
+
+            <td> <a href="{% url 'modificaractividad' ru.id %}">Editar</a></td>
+            <td> <a href="{% url 'eliminaractividad' ru.id %}">Eliminar</a></td>
+
     </tr>
 
     {% endfor %}

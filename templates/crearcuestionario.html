@@ -6,8 +6,6 @@
     <form method="POST" action="{% url 'crearcuestionario' %}">
         {% csrf_token %}
         {{ formCuestionario.as_p  }}
-
-
         <input type="submit" value="Crear Cuestionario">
     </form>
 {% endblock %}

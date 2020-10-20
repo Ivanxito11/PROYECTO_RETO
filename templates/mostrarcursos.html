@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+{% block background %}{% load static %}{% static 'img/about-bg.jpg' %}{% endblock %}
 
 
 {% block content %}
@@ -9,7 +9,7 @@
 
             <h2> LISTA DE CURSOS </h2>
 
-            <div class="table-responsive">
+            <div class="table-responsive ">
                 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -18,6 +18,8 @@
         <th>AÑO</th>
         <th>PARALELO</th>
         <th>JORNADA</th>
+        <th>EDITAR</th>
+        <th>ELIMINAR</th>
 
     </tr>
     </thead>
@@ -31,10 +33,10 @@
         <td>{{ c.paralelo }}</td>
         <td>{{ c.jornada }}</td>
 
-        <td>
-            <td> <a href="{% url 'editarcursos' c.id %}">EDIT</a></td>
-            <td> <a href="{% url 'eliminarcurso' c.id %}">DELETE</a></td>
-        </td>
+
+            <td> <a href="{% url 'editarcursos' c.id %}">EDITAR</a></td>
+            <td> <a href="{% url 'eliminarcurso' c.id %}">ELIMINAR</a></td>
+
     </tr>
 {% endfor %}
     </tbody>

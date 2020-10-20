@@ -1,11 +1,14 @@
-{% extends "base.html" %}
-
-{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+{% extends "base2.html" %}
+{% block background %}{% load static %}{% static 'img/about-bg.jpg' %}{% endblock %}
 {% block header %}
     <h2> Ingresar Curso </h2>
-    <form method="POST" action="{% url 'crearcurso' %}">
-        {% csrf_token %}
-        {{ curso.as_p  }}
-        <input type="submit" value="Crear Curso">
+
+    <form method="POST"  action="{% url 'crearcurso' %} ">
+        <div class="form-group">
+
+            {% csrf_token %}
+            {{ curso.as_p  }}
+            <input type="submit" value="Crear Curso">
+        </div>
     </form>
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block background %}{% load static %}{% static 'img/home-bg.jpg' %}{% endblock %}
+{% block background %}{% load static %}{% static 'img/about-bg.jpg' %}{% endblock %}
 
 
 {% block content %}
@@ -13,12 +13,15 @@
                 <table class="table">
         <thead class="thead-dark">
             <tr>
-                <td>ID</td>
-                <td>CURSO</td>
-                <td>DESCRIPCION</td>
-                <td>FECHA</td>
-                <td>PUNTAJE</td>
-                <td>ASIGNADO</td>
+                <th>ID</th>
+                <th>CURSO</th>
+                <th>DESCRIPCION</th>
+                <th>FECHA</th>
+                <th>PUNTAJE</th>
+                <th>ASIGNADO</th>
+
+                <th>EDITAR</th>
+                <th>ELIMINAR</th>
 
 
             </tr>
@@ -33,10 +36,10 @@
                 <td>{{ t.puntaje }}</td>
                 <td>{{ t.estado }}</td>
 
-                <td>
+
                 <td> <a href="{% url 'modificartarea' t.id %}">EDITAR</a></td>
                 <td> <a href="{% url 'eliminartarea' t.id %}">DELETE</a></td>
-                </td>
+
 
             {% endfor %}
                 </tr>
@@ -44,8 +47,8 @@
     </table>
     </div>
 
-    <a class="nav-link" href="{% url 'creartarea' %}">Crear Nueva Tarea</a>
-    <a class="nav-link" href="{% url 'exportarListTareas' %}">Exportar a PDF</a>
+    <a href="{% url 'creartarea' %}" class="btn btn-primary">Agregar una nueva tarea</a>
+
 
         </div>
     </div>

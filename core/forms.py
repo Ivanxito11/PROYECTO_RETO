@@ -21,6 +21,8 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username','nombres','apellidos', 'email', 'date_of_birth')
+        widgets = {'date_of_birth': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date'})}
+
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -110,10 +112,12 @@ class Planificacionform(forms.ModelForm):
         widgets = {'fecha': forms.DateInput(format=('%m/%d/%Y'),attrs={'type':'date' })}
 
 
+
 class Horarioform(forms.ModelForm):
     class Meta:
         model= Horario
         fields= ['docente','curso','hora','dia']
+        widgets = {'hora': forms.TimeInput(format=('%h:%m:%s'), attrs={'type': 'time'})}
 
 
 class Ingresopreguntaform(forms.ModelForm):
